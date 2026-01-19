@@ -18,13 +18,10 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v7
         with:
-          python-version: '3.x'
           enable-cache: false
 
       - name: Set up Node
         uses: actions/setup-node@v6
-        with:
-          node-version: '20'
 
       - name: Update star-openapi-rapidoc
         id: update_rapidoc
