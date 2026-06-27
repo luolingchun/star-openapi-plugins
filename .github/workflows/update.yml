@@ -242,3 +242,39 @@ jobs:
           cd star-openapi-rapipdf
           uv build
           uv publish
+      
+
+      # ---------------------------------star-openapi-explorer----------------------------------------------------------
+      - name: Update star-openapi-explorer
+        id: update_explorer
+        run: |
+          cd ./star-openapi-explorer/star_openapi_explorer
+          old_version=$(cat __version__.py | grep -oP '(?<=__version__ = ").*(?=")')
+          new_version=$(npm show openapi-explorer version)
+          if [ "${new_version}" != "${old_version}" ]; then
+            curl -L https://cdn.jsdelivr.net/npm/openapi-explorer@${new_version}/dist/browser/openapi-explorer.min.js \
+                 -o ./templates/explorer/js/openapi-explorer.min.js
+            echo -e "# -*- coding: utf-8 -*-\n\n__version__ = \"${new_version}\"" > __version__.py
+            echo "new_version=${new_version}" >> $GITHUB_OUTPUT
+            echo "is_update=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_update=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Git Commit
+        if: ${{ steps.update_explorer.outputs.is_update == 'true' }}
+        id: git_commit
+        run: |
+          new_version=${{ steps.update_explorer.outputs.new_version }}
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "Update OpenAPI Explorer ${new_version}"
+          git push origin main
+
+      - name: Release star-openapi-explorer
+        if: ${{ steps.git_commit.outcome == 'success' }}
+        run: |
+          cd star-openapi-explorer
+          uv build
+          uv publish
