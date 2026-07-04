@@ -47,7 +47,7 @@ jobs:
 
       - name: Git Commit
         if: ${{ steps.update_swagger.outputs.is_update == 'true' }}
-        id: git_commit
+        id: git_commit_swagger
         run: |
           new_version=${{ steps.update_swagger.outputs.new_version }}
           git config --local user.email "action@github.com"
@@ -83,7 +83,7 @@ jobs:
 
       - name: Git Commit
         if: ${{ steps.update_scalar.outputs.is_update == 'true' }}
-        id: git_commit
+        id: git_commit_scalar
         run: |
           new_version=${{ steps.update_scalar.outputs.new_version }}
           git config --local user.email "action@github.com"
@@ -119,7 +119,7 @@ jobs:
 
       - name: Git Commit
         if: ${{ steps.update_redoc.outputs.is_update == 'true' }}
-        id: git_commit
+        id: git_commit_redoc
         run: |
           new_version=${{ steps.update_redoc.outputs.new_version }}
           git config --local user.email "action@github.com"
@@ -157,7 +157,7 @@ jobs:
 
       - name: Git Commit
         if: ${{ steps.update_elements.outputs.is_update == 'true' }}
-        id: git_commit
+        id: git_commit_elements
         run: |
           new_version=${{ steps.update_elements.outputs.new_version }}
           git config --local user.email "action@github.com"
@@ -193,7 +193,7 @@ jobs:
 
       - name: Git Commit
         if: ${{ steps.update_rapidoc.outputs.is_update == 'true' }}
-        id: git_commit
+        id: git_commit_rapidoc
         run: |
           new_version=${{ steps.update_rapidoc.outputs.new_version }}
           git config --local user.email "action@github.com"
@@ -228,7 +228,7 @@ jobs:
           fi
       - name: Git Commit
         if: ${{ steps.update_rapipdf.outputs.is_update == 'true' }}
-        id: git_commit
+        id: git_commit_rapipdf
         run: |
           new_version=${{ steps.update_rapipdf.outputs.new_version }}
           git config --local user.email "action@github.com"
@@ -263,7 +263,7 @@ jobs:
 
       - name: Git Commit
         if: ${{ steps.update_explorer.outputs.is_update == 'true' }}
-        id: git_commit
+        id: git_commit_explorer
         run: |
           new_version=${{ steps.update_explorer.outputs.new_version }}
           git config --local user.email "action@github.com"
