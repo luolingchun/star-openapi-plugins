@@ -1,4 +1,4 @@
-name: Check swagger
+name: Update OpenAPI UI
 
 on:
   schedule:
@@ -57,7 +57,7 @@ jobs:
           git push origin main
 
       - name: Release star-openapi-swagger
-        if: ${{ steps.git_commit.outcome == 'success' }}
+        if: ${{ steps.git_commit_swagger.outcome == 'success' }}
         run: |
           cd star-openapi-swagger
           uv build
@@ -93,7 +93,7 @@ jobs:
           git push origin main
 
       - name: Release star-openapi-scalar
-        if: ${{ steps.git_commit.outcome == 'success' }}
+        if: ${{ steps.git_commit_scalar.outcome == 'success' }}
         run: |
           cd star-openapi-scalar
           uv build
@@ -129,7 +129,7 @@ jobs:
           git push origin main
 
       - name: Release star-openapi-redoc
-        if: ${{ steps.git_commit.outcome == 'success' }}
+        if: ${{ steps.git_commit_redoc.outcome == 'success' }}
         run: |
           cd star-openapi-redoc
           uv build
@@ -167,7 +167,7 @@ jobs:
           git push origin main
 
       - name: Release star-openapi-elements
-        if: ${{ steps.git_commit.outcome == 'success' }}
+        if: ${{ steps.git_commit_elements.outcome == 'success' }}
         run: |
           cd star-openapi-elements
           uv build
@@ -203,7 +203,7 @@ jobs:
           git push origin main
 
       - name: Release star-openapi-rapidoc
-        if: ${{ steps.git_commit.outcome == 'success' }}
+        if: ${{ steps.git_commit_rapidoc.outcome == 'success' }}
         run: |
           cd star-openapi-rapidoc
           uv build
@@ -237,7 +237,7 @@ jobs:
           git commit -m "Update rapipdf ${new_version}"
           git push origin main
       - name: Release star-openapi-rapipdf
-        if: ${{ steps.git_commit.outcome == 'success' }}
+        if: ${{ steps.git_commit_rapipdf.outcome == 'success' }}
         run: |
           cd star-openapi-rapipdf
           uv build
@@ -273,7 +273,7 @@ jobs:
           git push origin main
 
       - name: Release star-openapi-explorer
-        if: ${{ steps.git_commit.outcome == 'success' }}
+        if: ${{ steps.git_commit_explorer.outcome == 'success' }}
         run: |
           cd star-openapi-explorer
           uv build
